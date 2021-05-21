@@ -1,0 +1,63 @@
+$ mysql -u aminet -p
+Enter password: password1
+mysql> use aminetweb;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_aminetweb |
++---------------------+
+| posts               |
+| userinfo            |
+| userprofile         |
++---------------------+
+3 rows in set (0.00 sec)
+
+mysql> desc posts;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| primarykey | char(128)    | NO   |     | NULL    |       |
+| title      | varchar(32)  | YES  |     | NULL    |       |
+| content    | varchar(300) | YES  |     | NULL    |       |
+| postedtime | timestamp    | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc userinfo;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| email        | varchar(70) | NO   |     | NULL    |       |
+| username     | varchar(70) | NO   |     | NULL    |       |
+| passwordhash | varchar(32) | NO   |     | NULL    |       |
+| phpsession   | char(26)    | YES  |     | NULL    |       |
+| primarykey   | char(128)   | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc userprofile;
++----------------------+--------------+------+-----+-------------+-------+
+| Field                | Type         | Null | Key | Default     | Extra |
++----------------------+--------------+------+-----+-------------+-------+
+| primarykey           | char(128)    | NO   |     | NULL        |       |
+| fullname             | varchar(60)  | YES  |     | NULL        |       |
+| profileimagelocation | varchar(40)  | NO   |     | avatar.jpeg |       |
+| phone                | varchar(20)  | YES  |     | NULL        |       |
+| skills               | varchar(100) | YES  |     | NULL        |       |
+| twitter              | varchar(60)  | YES  |     | NULL        |       |
+| linkedin             | varchar(60)  | YES  |     | NULL        |       |
+| description          | varchar(300) | YES  |     | NULL        |       |
++----------------------+--------------+------+-----+-------------+-------+
+8 rows in set (0.00 sec)
+
+==========================================================================
+**CREATING AMINET USER AND AMINETWEB DATABASE**
+
+Login as root in mysql and then execute
+
+CREATE USER 'aminet'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE aminetweb;
+GRANT ALL PRIVILEGES ON aminetweb.* TO 'aminet'@'localhost';
+FLUSH PRIVILEGES;
+
+**You can create above tables on your own, automatic table creation will added soon** 
